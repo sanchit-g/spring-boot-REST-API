@@ -27,7 +27,7 @@ public class CourseServiceJdbc implements CourseService {
     }
 
     @Override
-    public Course getCourse(long courseId) {
+    public Course getCourseById(long courseId) {
         String query = "SELECT * FROM course WHERE id = :id";
         MapSqlParameterSource namedParameter = new MapSqlParameterSource();
         namedParameter.addValue("id", courseId);
@@ -37,10 +37,10 @@ public class CourseServiceJdbc implements CourseService {
     }
 
     @Override
-    public List<Course> getCourse(String title) {
+    public Course getCourseByName(String title) {
         String query = "SELECT * FROM course WHERE title = :title";
         MapSqlParameterSource namedParameter = new MapSqlParameterSource().addValue("title", title);
-        return namedParameterJdbcTemplate.query(query, namedParameter, new CourseMapper());
+        return namedParameterJdbcTemplate.queryForObject(query, namedParameter, new CourseMapper());
     }
 
     @Override

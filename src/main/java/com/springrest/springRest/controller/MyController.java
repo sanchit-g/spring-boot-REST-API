@@ -1,6 +1,7 @@
 package com.springrest.springRest.controller;
 
 import com.springrest.springRest.entities.Course;
+import com.springrest.springRest.entities.Req;
 import com.springrest.springRest.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,17 +26,15 @@ public class MyController {
         return this.courseService.getCourses();
     }
 
-    // get a single course using id
+    // get a single course using id or name
     @GetMapping("/course")
-    public Course getCourseById(@RequestParam String courseId) {
-        return this.courseService.getCourse(Long.parseLong(courseId));
+    public Course getCourseById(@RequestBody Req req) {
+        if (req.filter.equals("CourseId")) {
+            return this.courseService.getCourseById(Long.parseLong(req.value));
+        } else {
+            return this.courseService.getCourseByName(req.value);
+        }
     }
-
-    // get a single course using title
-//    @GetMapping("/course")
-//    public List<Course> getCourseByName(@RequestParam String title) {
-//        return this.courseService.getCourse(title);
-//    }
 
     // add a new course
     @PostMapping("/courses")
