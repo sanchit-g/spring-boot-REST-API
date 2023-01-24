@@ -23,7 +23,7 @@ public class CourseServiceJdbc implements CourseService {
     public List<Course> getCourses() {
         String query = "SELECT * FROM course";
         RowMapper<Course> courseRowMapper = new CourseMapper();
-        return namedParameterJdbcTemplate.query(query, courseRowMapper);
+        return jdbcTemplate.query(query, courseRowMapper);
     }
 
     @Override

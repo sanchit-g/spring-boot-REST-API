@@ -8,16 +8,6 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class KafkaTopicConfig {
     @Bean
-    public NewTopic courseTopic() {
-        return TopicBuilder.name("course").build();
-    }
-
-    @Bean
-    public NewTopic courseJsonTopic() {
-        return TopicBuilder.name("course_json").build();
-    }
-
-    @Bean
     public NewTopic enrollmentTopic() {
         return TopicBuilder.name("enrollments").build();
     }
